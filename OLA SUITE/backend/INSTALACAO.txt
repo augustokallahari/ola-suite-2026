@@ -1,0 +1,43 @@
+====================================================
+  OlaSuite Backend — Guia de Instalação
+====================================================
+
+PRÉ-REQUISITOS:
+  - Node.js 18+ instalado
+  - MySQL/MariaDB rodando (XAMPP/LAMPP)
+  - Banco "chat-kallahari" criado e schema importado
+
+PASSO 1 — Instalar dependências:
+  cd backend
+  npm install
+
+PASSO 2 — Configurar .env:
+  Edite o arquivo .env e defina:
+    DB_USER=root
+    DB_PASS=sua_senha_mysql
+    API_SECRET=uma_chave_secreta_forte
+
+PASSO 3 — Iniciar em desenvolvimento:
+  npm run dev
+
+PASSO 4 — Iniciar em produção com PM2:
+  npm install -g pm2
+  pm2 start ecosystem.config.js
+  pm2 save
+  pm2 startup
+
+VERIFICAÇÃO:
+  Acesse: http://localhost:3000/health
+  Resposta esperada: {"status":"ok",...}
+
+AUTENTICAÇÃO DA API:
+  Todas as rotas /api/* exigem o header:
+    X-Api-Key: [valor de API_SECRET no .env]
+
+NOTAS LINUX (XAMPP):
+  - O puppeteer usa Chromium. Se necessário instale:
+    sudo apt-get install -y chromium-browser
+  - Para liberar a porta 3000 no firewall:
+    sudo ufw allow 3000
+
+====================================================
