@@ -1,0 +1,11 @@
+Options -Indexes
+
+# Redireciona /olasuite para /olasuite/frontend/login.php
+RewriteEngine On
+RewriteRule ^$ frontend/login.php [R=301,L]
+RewriteRule ^frontend/?$ frontend/login.php [R=301,L]
+
+# Bloqueia acesso direto ao backend e pastas sensíveis
+RewriteRule ^backend/(.*)$ - [F,L]
+RewriteRule ^database/(.*)$ - [F,L]
+RewriteRule ^deploy\.sh$ - [F,L]
